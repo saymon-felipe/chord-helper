@@ -122,14 +122,19 @@ export default {
                 return;
             }
 
+            this.storeNotes();
             this.clearRecordNotes();
             return;
         }
     },
     methods: {
+        storeNotes: function () {
+            this.$emit("finishedRecording", this.recordedNotes);
+        },
         clearRecordNotes: function () {
             $(".key").unbind("click");
             $(".key .key-after").hide();
+            this.recordedNotes = [];
         },
         recordNotes: function () {
             let self = this;
@@ -149,14 +154,12 @@ export default {
         },
         markNote: function (element, id) {
             this.recordedNotes.push(id);
-            console.log(this.recordedNotes)
             element.show();
         },
         unmarkNote: function (element, id) {
             let self = this;
             let elementIndex = self.recordedNotes.indexOf(self.recordedNotes.find(obj => obj == id));
             self.recordedNotes.splice(elementIndex, 1);
-            console.log(self.recordedNotes)
             element.hide();
         },
         organizeSemiNotes: function () {

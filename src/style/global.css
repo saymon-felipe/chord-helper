@@ -4,6 +4,7 @@
     --secondary-blue-soft: #36a6f6;
     --others-yellow: #ffca37;
     --others-red: #d64a2e;
+    --others-red-high: #ffd0c6;
     --others-green: #51cf24;
     --neutral-white: #fff;
     --neutral-black-low: #222;
@@ -48,6 +49,23 @@
     --font-size-button-3: 18px; 
     --font-size-button-4: 14px;
     --font-size-button-5: 12px;
+  }
+
+  .auto-play-select-key {
+    animation: pulseGreen 0.5s;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes pulseGreen {
+    0% {
+      background: var(--tertiary-tertiary-green-high-2);
+    }
+    30% {
+      background: var(--tertiary-tertiary-green-high-2);
+    }
+    100% {
+      background: white;
+    }
   }
   
   .error {
@@ -152,14 +170,6 @@
   }
   h5 {
     font-size: var(--font-size-h5);
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    font-weight: normal;
   }
   
   html, body {

@@ -1,8 +1,8 @@
 <template>
     <appTemplate>
-        <section class="content d-flex flex-column">
-            <pianoOptions @record="recording = true" @stopRecord="recording = false" :recordVar="recording" />
-            <pianoComponent :recordVar="recording" />
+        <section class="content d-flex flex-column justify-content-start">
+            <pianoOptions @record="recording = true" @stopRecord="recording = false" :recordVar="recording" :storedNotes="storedNotes" />
+            <pianoComponent :recordVar="recording" @finishedRecording="fillStoredNotes($event)" />
         </section>
     </appTemplate>
 </template>
@@ -17,7 +17,13 @@ export default {
     mixins: [globalMethods],
     data() {
         return {
-            recording: false
+            recording: false,
+            storedNotes: []
+        }
+    },
+    methods: {
+        fillStoredNotes: function (event) {
+            this.storedNotes = event;
         }
     },
     components: {
@@ -30,7 +36,6 @@ export default {
 <style scoped>
 .content {
     width: 100%;
-    height: calc(100% - 250px);
     display: flex;
     align-items: center;
     justify-content: center;

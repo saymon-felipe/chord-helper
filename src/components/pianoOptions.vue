@@ -159,11 +159,17 @@ export default {
             for (let i = 0; i < audioElements.length; i++) {
                 let currentAudioElement = $(audioElements[i])[0];
                 let currentKeyElement = $("#" + currentAudioElement.getAttribute("id").replace("audio-", ""));
-                if (currentKeyElement.hasClass("auto-play-select-key")) {
-                    currentKeyElement.removeClass("auto-play-select-key");
+                
+                if (currentKeyElement.hasClass("auto-play-select-key-white") || currentKeyElement.hasClass("auto-play-select-key-black")) {
+                    currentKeyElement.removeClass("auto-play-select-key-white");
+                    currentKeyElement.removeClass("auto-play-select-key-black");
                 }
                 setTimeout(() => {
-                    currentKeyElement.addClass("auto-play-select-key");
+                    if (currentKeyElement.hasClass("semi")) {
+                        currentKeyElement.addClass("auto-play-select-key-black");
+                    } else if (currentKeyElement.hasClass("normal")){
+                        currentKeyElement.addClass("auto-play-select-key-white");
+                    }
                 }, 10)
                 currentAudioElement.pause();
                 currentAudioElement.currentTime = 0;
